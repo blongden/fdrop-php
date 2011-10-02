@@ -8,6 +8,6 @@ set_include_path(implode(PATH_SEPARATOR, array(realpath(__DIR__.'/library'), get
 $loader = Zend_Loader_Autoloader::getInstance();
 $loader->registerNamespace('Fdrop');
 $fdropit = new Fdrop_Service_Send();
-$receipt = $fdropit->fdrop($argv[0]);
+$receipt = $fdropit->fdrop($argv[1]);
 
 echo "{$receipt['drop']}\n";

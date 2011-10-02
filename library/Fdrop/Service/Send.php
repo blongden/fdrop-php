@@ -52,7 +52,12 @@ class Fdrop_Service_Send
         $info = $this->getSendFileInfo();
 
         $client = new Zend_Http_Client(self::URL."/{$info['action']}");
-        $client->setMethod($info['method'])->setFileUpload($file, $info['param']);
+        try {
+            $client->setMethod($info['method'])->setFileUpload($file, $info['param']);
+        } catch (Zend_Http_Client_Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
         $client->setConfig(array('timeout' => -1));
 
         $links = $this->setNamespace($this->makeRequest($client))->xpath('//x:a[@rel="drop"]');
