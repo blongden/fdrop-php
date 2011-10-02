@@ -1,9 +1,9 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 
 include 'Zend/Loader/Autoloader.php';
 
-set_include_path(implode(PATH_SEPARATOR, array(realpath('./library'), get_include_path())));
+set_include_path(implode(PATH_SEPARATOR, array(realpath(__DIR__.'/library'), get_include_path())));
 
 $loader = Zend_Loader_Autoloader::getInstance();
 $loader->registerNamespace('Fdrop');
