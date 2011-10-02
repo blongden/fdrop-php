@@ -33,7 +33,7 @@ class Fdrop_Service_Send
 
     private function makeRequest(Zend_Http_Client $client)
     {
-        $client->setHeaders(array('Accept' => 'application/xhtml+xml'));
+        $client->setHeaders(array('Accept' => 'application/vnd.fdrop.xhtml+xml'));
         return simplexml_load_string($client->request()->getBody());
     }
 
