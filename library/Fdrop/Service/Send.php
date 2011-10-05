@@ -51,7 +51,7 @@ class Fdrop_Service_Send
     {
         $info = $this->getSendFileInfo();
 
-        $client = new Zend_Http_Client(self::URL."/{$info['action']}");
+        $client = new Zend_Http_Client("{$info['action']}");
         try {
             $client->setMethod($info['method'])->setFileUpload($file, $info['param']);
         } catch (Zend_Http_Client_Exception $e) {
