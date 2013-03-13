@@ -1,10 +1,7 @@
 <?php
-/**
- *
- **/
 class Fdrop_Service_Send
 {
-    const URL='http://fdrop.it';
+    const URL='http://fdrop.me';
 
     private function setNamespace($dom)
     {
