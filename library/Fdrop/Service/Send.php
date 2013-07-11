@@ -1,5 +1,7 @@
 <?php
-class Fdrop_Service_Send
+namespace Fdrop\Service;
+
+class Send
 {
     const URL='http://fdrop.me';
 
@@ -28,7 +30,7 @@ class Fdrop_Service_Send
         );
     }
 
-    private function makeRequest(Zend_Http_Client $client)
+    private function makeRequest(\Zend_Http_Client $client)
     {
         $client->setHeaders(array('Accept' => 'application/vnd.fdrop.xhtml+xml'));
         return simplexml_load_string($client->request()->getBody());
@@ -36,7 +38,7 @@ class Fdrop_Service_Send
 
     protected function getSendFileInfo()
     {
-        $dom = $this->makeRequest(new Zend_Http_Client(self::URL));
+        $dom = $this->makeRequest(new \Zend_Http_Client(self::URL));
 
         return array_merge(
             $this->getFormAttributes($dom),
@@ -48,10 +50,10 @@ class Fdrop_Service_Send
     {
         $info = $this->getSendFileInfo();
 
-        $client = new Zend_Http_Client("{$info['action']}");
+        $client = new \Zend_Http_Client("{$info['action']}");
         try {
             $client->setMethod($info['method'])->setFileUpload($file, $info['param']);
-        } catch (Zend_Http_Client_Exception $e) {
+        } catch (\Zend_Http_Client_Exception $e) {
             echo $e->getMessage();
             return false;
         }

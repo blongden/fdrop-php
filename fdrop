@@ -1,9 +1,9 @@
 #!/usr/bin/env php
 <?php
-
 require_once 'vendor/autoload.php';
+use Fdrop\Service\Send;
 
-$fdropit = new Fdrop_Service_Send();
-$receipt = $fdropit->fdrop($argv[1]);
+$fdrop = new Send();
+$receipt = $fdrop->fdrop($argv[1]);
 
 echo "{$receipt['drop']}\n";
